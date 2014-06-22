@@ -103,33 +103,39 @@ public class Manipulator {
 	 * which we use to reorder the array in such way that all other greater
 	 * elements are after it and each one with less value before
 	 * 
-	 * @param left
+	 * @param downBorder
 	 *            count the elements which are less than the pivot
-	 * @param right
+	 * @param upBorder
 	 *            count the elements which are greater than the pivot
 	 * 
 	 * @return the "pivot" index
 	 * 
 	 */
 
-	private int choosePivotPoint(int left, int right) {
-		int pivot = array[left + (right - left) / 2];
+	private int choosePivotPoint(int downBorder, int upBorder) {
+		int pivot = array[downBorder];
+		int left = downBorder - 1;
+		int right = upBorder + 1;
 		int temp;
 
-		while (left < right) {
-			while (array[left] < pivot) {
+		while (true) {
+			left++;
+			while (left < upBorder && array[left] < pivot) {
 				left++;
 			}
-			while (array[right] > pivot) {
+			right--;
+			while (right > downBorder && array[right] > pivot) {
 				right--;
 			}
-			if (left <= right) {
+			if (left < right) {
 				temp = array[left];
 				array[left] = array[right];
 				array[right] = temp;
+			} else {
+				return right;
 			}
+
 		}
-		return left;
 	}
 
 	/**
@@ -143,12 +149,11 @@ public class Manipulator {
 	 *            left to index right;
 	 */
 	public void qsort(int left, int right) {
-		if (left >= right) {
-			return;
+		if (left < right) {
+			int pivot = choosePivotPoint(left, right);
+			qsort(left, pivot);
+			qsort(pivot + 1, right);
 		}
-		int pivot = choosePivotPoint(left, right);
-		qsort(left, pivot);
-		qsort(pivot + 1, right);
 	}
 
 	/**
