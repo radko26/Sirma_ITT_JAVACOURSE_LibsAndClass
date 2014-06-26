@@ -1,26 +1,24 @@
-package test;
+package com.sirma.itt.javacourse.lib.bigint;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigInteger;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sirma.itt.javacourse.lib.bigint.BigInt;
-
 /**
  * BigInteger JUnit test
  * 
  * @author radoslav
  */
-public class testBigInt {
+public class BigIntTest {
 
-	BigInteger firstNumber;
-	BigInteger secondNumber;
-	BigInteger sum;
-	String[] nums;
-	BigInt b;
+	private BigInteger firstNumber;
+	private BigInteger secondNumber;
+	private BigInteger sum;
+	private String[] nums;
+	private BigInt b;
 
 	@Before
 	/**
@@ -48,7 +46,6 @@ public class testBigInt {
 			sum = sum.add(secondNumber);
 			assertEquals(b.calculate(nums[0], nums[1]), sum.toString());
 		}
-
 	}
 
 }

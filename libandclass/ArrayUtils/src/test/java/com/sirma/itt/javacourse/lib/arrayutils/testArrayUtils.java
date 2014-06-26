@@ -1,4 +1,4 @@
-package test;
+package com.sirma.itt.javacourse.lib.arrayutils;
 
 import static org.junit.Assert.*;
 
